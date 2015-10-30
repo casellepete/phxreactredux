@@ -15,7 +15,7 @@
   
     var Tool = React.createClass({
       render: function render() {
-        return <div>{this.props.tool.name} &nbsp; &nbsp; used {this.props.tool.used} times.</div>;
+        return <div>{this.props.tool.name} &nbsp; &nbsp; uused {this.props.tool.used} times.</div>;
       }
     });
  

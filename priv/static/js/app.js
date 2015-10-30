@@ -46,6 +46,7 @@
 
 	//import socket from "./socket"
 
+	// Requiring scss in javascript? Ya... I know it's weird
 	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
@@ -61,6 +62,8 @@
 	var _componentssJs = __webpack_require__(1);
 
 	var _componentssJs2 = _interopRequireDefault(_componentssJs);
+
+	__webpack_require__(178);
 
 	var App = (function () {
 	  function App() {
@@ -21782,6 +21785,12 @@
 	module.exports = invariant;
 
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(4)))
+
+/***/ },
+/* 178 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

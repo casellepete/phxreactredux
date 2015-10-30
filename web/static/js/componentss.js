@@ -1,9 +1,16 @@
+import React from 'react'
+import { Provider } from 'react-redux';
+
+class Componentss {
+  static init() {
+
+    console.log("hello from components");
 
     var Toolbox = React.createClass({
       displayName: "Toolbox",
       getInitialState: function() {
-      return {color: "#EEEEEE", tools: [ {name: "Hammer", used: 0 },
-                                         {name: "Wrench", used: 0 }] }
+      return {color: "#EEEEEE", tools: [ {key: 1, name: "Hammer", used: 0 },
+                                         {key: 2, name: "Wrench", used: 0 }] }
       },
       render: function render() {
         var tools = this.state.tools.map(function(tool){
@@ -19,8 +26,16 @@
       }
     });
  
+    React.render(
+                 <Toolbox />,
+                 $("#toolbox")[0] );
+  }
+}
+
+$( () => Componentss.init() )
+
+  export default Componentss
  
-  ReactDOM.render(<Toolbox />, $("#toolbox")[0] );
   
 
 

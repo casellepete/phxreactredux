@@ -1,10 +1,11 @@
 //import socket from "./socket"
 
+import Componentss from './componentss.js'
 
 class App {
   static init() {
 
-    console.log("hello from webpack");
+    console.log("hello from wwwebpack");
 
 }
 }

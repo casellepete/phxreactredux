@@ -4,7 +4,7 @@
 set -e
 
 if (docker ps -a | grep phxreactredux_shell); then
-  docker rm -f farmer_shell
+  docker rm -f phxreactredux_shell
 fi
 
 

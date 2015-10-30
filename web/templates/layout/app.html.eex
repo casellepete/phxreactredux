@@ -12,10 +12,6 @@
 
     <script src="/js/jquery-1.11.3.min.js") %>"></script>
     <script src="/js/jquery-ui-1.11.4.custom/jquery-ui.js") %>"></script>
-<!--    <script src="/js/react-with-addons.min.js") %>"></script>
-    <script src="/js/react-dom.min.js") %>"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/0.13.3/JSXTransformer.js") %>"></script>
--->
 
 
   </head>

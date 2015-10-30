@@ -2,8 +2,8 @@
 
 
 const initialState = {
-                      color: "#FF00FF", tools: [{name: "Hammer", used: 15},
-                                                {name: "Wrench", used: 16}] 
+  color: "#FF00FF", tools: [{key: 101, name: "Hammer", used: 15},
+                            {key: 102, name: "Wrench", used: 16}] 
                      }
 
 

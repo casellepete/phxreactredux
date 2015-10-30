@@ -12,14 +12,14 @@ require("../css/app.scss");
 let ToolboxComponents = React.createClass({
       displayName: "Toolbox",
       getInitialState: function() {
-      return {color: "#EEEEEE", tools: [ {key: 1, name: "Hammer", used: 0 },
-                                         {key: 2, name: "Wrench", used: 0 }] }
+        return this.props
       },
       render: function render() {
+        console.log(this.props);
         var tools = this.state.tools.map(function(tool){
           return <Tool tool={tool} />
         });
-        return <div style={{backgroundColor: this.state.color}}>{tools}</div>;
+        return <div style={{backgroundColor: this.state.color}} >{tools}</div>;
       }
     });
   
@@ -47,20 +47,17 @@ function mapStateToProps (state) {
 }
 
 function mapDispatchToProps (dispatch) {
-  return {}
+  return {
+    onIncreaseClick: () => dispatch('INCREMENT_USED')
+  }
 }
 
-let App = connect(mapStateToProps,
-                  mapDispatchToProps
-)(ToolboxComponents)
+var App = connect(mapStateToProps, mapDispatchToProps)(ToolboxComponents)
 
     console.log("hello from wwwebpack");
 
     var someitem = $("#toolbox")[0] 
 
-//    let abc = (<Provider store={toolboxStore}>
-//                 <App />
-//              </Provider>)
 
     let abc = (      <Provider store={toolboxStore}>
                {() => <App />}
@@ -71,8 +68,6 @@ let App = connect(mapStateToProps,
 
     });
 
-                 //<Provider store={toolboxStore}>
-                 //</Provider>,
 
 
 

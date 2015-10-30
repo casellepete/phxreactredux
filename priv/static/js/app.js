@@ -66,9 +66,10 @@
 	var ToolboxComponents = _react2['default'].createClass({
 	  displayName: "Toolbox",
 	  getInitialState: function getInitialState() {
-	    return { color: "#EEEEEE", tools: [{ key: 1, name: "Hammer", used: 0 }, { key: 2, name: "Wrench", used: 0 }] };
+	    return this.props;
 	  },
 	  render: function render() {
+	    console.log(this.props);
 	    var tools = this.state.tools.map(function (tool) {
 	      return _react2['default'].createElement(Tool, { tool: tool });
 	    });
@@ -110,7 +111,11 @@
 	}
 
 	function mapDispatchToProps(dispatch) {
-	  return {};
+	  return {
+	    onIncreaseClick: function onIncreaseClick() {
+	      return dispatch('INCREMENT_USED');
+	    }
+	  };
 	}
 
 	var App = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ToolboxComponents);
@@ -118,10 +123,6 @@
 	console.log("hello from wwwebpack");
 
 	var someitem = $("#toolbox")[0];
-
-	//    let abc = (<Provider store={toolboxStore}>
-	//                 <App />
-	//              </Provider>)
 
 	var abc = _react2['default'].createElement(
 	  _reactRedux.Provider,
@@ -134,9 +135,6 @@
 	$(document).ready(function () {
 	  _react2['default'].render(abc, someitem);
 	});
-
-	//<Provider store={toolboxStore}>
-	//</Provider>,
 
 /***/ },
 /* 1 */
@@ -21785,7 +21783,7 @@
 	});
 
 	var initialState = {
-	  color: "#FF00FF", tools: [{ name: "Hammer", used: 15 }, { name: "Wrench", used: 16 }]
+	  color: "#FF00FF", tools: [{ key: 101, name: "Hammer", used: 15 }, { key: 102, name: "Wrench", used: 16 }]
 	};
 
 	var ToolboxReducers = function tools(state, action) {

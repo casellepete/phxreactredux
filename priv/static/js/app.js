@@ -58,83 +58,20 @@
 
 	var _toolbox_storeJs = __webpack_require__(177);
 
-	//import ToolboxComponents from './toolbox_components.js'
+	var _toolbox_componentsJs = __webpack_require__(179);
+
+	var _toolbox_componentsJs2 = _interopRequireDefault(_toolbox_componentsJs);
 
 	// Requiring scss in javascript? Ya... I know it's weird
-	__webpack_require__(179);
+	__webpack_require__(180);
 
-	var ToolboxComponents = _react2['default'].createClass({
-	  displayName: "Toolbox",
-	  getInitialState: function getInitialState() {
-	    return this.props;
-	  },
-	  render: function render() {
-	    console.log(this.props);
-	    var tools = this.state.tools.map(function (tool) {
-	      return _react2['default'].createElement(Tool, { tool: tool });
-	    });
-	    return _react2['default'].createElement(
-	      'div',
-	      { style: { backgroundColor: this.state.color } },
-	      tools
-	    );
-	  }
-	});
-
-	var Tool = _react2['default'].createClass({
-	  displayName: 'Tool',
-
-	  render: function render() {
-	    return _react2['default'].createElement(
-	      'div',
-	      null,
-	      this.props.tool.name,
-	      _react2['default'].createElement(
-	        'button',
-	        { onClick: this.increment },
-	        'used: ',
-	        this.props.tool.used
-	      )
-	    );
-	  },
-	  increment: function increment(e) {
-	    e.preventDefault();
-	    _toolbox_storeJs.toolboxStore.dispatch({ type: 'INCREMENT_USED' });
-	  }
-
-	});
-
-	function mapStateToProps(state) {
-	  return { tools: state.tools,
-	    color: state.color
-	  };
-	}
-
-	function mapDispatchToProps(dispatch) {
-	  return {
-	    onIncreaseClick: function onIncreaseClick() {
-	      return dispatch('INCREMENT_USED');
-	    }
-	  };
-	}
-
-	var App = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ToolboxComponents);
-
-	console.log("hello from wwwebpack");
-
-	var someitem = $("#toolbox")[0];
-
-	var abc = _react2['default'].createElement(
+	_react2['default'].render(_react2['default'].createElement(
 	  _reactRedux.Provider,
 	  { store: _toolbox_storeJs.toolboxStore },
 	  function () {
-	    return _react2['default'].createElement(App, null);
+	    return _react2['default'].createElement(_toolbox_componentsJs2['default'], null);
 	  }
-	);
-
-	$(document).ready(function () {
-	  _react2['default'].render(abc, someitem);
-	});
+	), $("#toolbox")[0]);
 
 /***/ },
 /* 1 */
@@ -21801,6 +21738,126 @@
 
 /***/ },
 /* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+
+	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== 'function' && superClass !== null) { throw new TypeError('Super expression must either be null or a function, not ' + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactRedux = __webpack_require__(157);
+
+	var _toolbox_storeJs = __webpack_require__(177);
+
+	var ToolboxComponents = (function (_React$Component) {
+	  _inherits(ToolboxComponents, _React$Component);
+
+	  function ToolboxComponents(props) {
+	    _classCallCheck(this, ToolboxComponents);
+
+	    console.log("store:");
+	    console.log(_toolbox_storeJs.toolboxStore.getState());
+	    console.log(":store:");
+	    _get(Object.getPrototypeOf(ToolboxComponents.prototype), 'constructor', this).call(this, props);
+	    this.state = _toolbox_storeJs.toolboxStore.getState();
+	  }
+
+	  _createClass(ToolboxComponents, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      console.log("component mounted");
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      console.log("renderprops:");
+	      console.log(this.props);
+	      console.log(":renderprops");
+	      var tools = this.state.tools.map(function (tool) {
+	        return _react2['default'].createElement(Tool, { tool: tool });
+	      });
+	      return _react2['default'].createElement(
+	        'div',
+	        { style: { backgroundColor: this.state.color } },
+	        tools
+	      );
+	    }
+	  }]);
+
+	  return ToolboxComponents;
+	})(_react2['default'].Component);
+
+	function mapStateToProps(state) {
+	  return { state: state };
+	}
+
+	function mapDispatchToProps(dispatch) {
+	  return {
+	    onIncreaseClick: function onIncreaseClick() {
+	      return dispatch('INCREMENT_USED');
+	    }
+	  };
+	}
+
+	console.log("hello from wwwebpack");
+
+	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ToolboxComponents);
+
+	var Tool = (function (_React$Component2) {
+	  _inherits(Tool, _React$Component2);
+
+	  function Tool() {
+	    _classCallCheck(this, Tool);
+
+	    _get(Object.getPrototypeOf(Tool.prototype), 'constructor', this).apply(this, arguments);
+	  }
+
+	  _createClass(Tool, [{
+	    key: 'increment',
+	    value: function increment(e) {
+	      alert("clicked");
+	      e.preventDefault();
+	      _toolbox_storeJs.toolboxStore.dispatch({ type: 'INCREMENT_USED' });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2['default'].createElement(
+	        'div',
+	        null,
+	        this.props.tool.name,
+	        _react2['default'].createElement(
+	          'button',
+	          { onClick: this.increment },
+	          'used: ',
+	          this.props.tool.used
+	        )
+	      );
+	    }
+	  }]);
+
+	  return Tool;
+	})(_react2['default'].Component);
+
+	module.exports = exports['default'];
+
+/***/ },
+/* 180 */
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin

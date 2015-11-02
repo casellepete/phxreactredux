@@ -30,7 +30,8 @@ class ToolboxComponents extends React.Component {
 
 
 function mapStateToProps (state) {
-  return {state}
+  return {color: state.color,
+          tools: state.tools}
 }
 
 

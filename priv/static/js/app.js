@@ -21803,7 +21803,8 @@
 	})(_react2['default'].Component);
 
 	function mapStateToProps(state) {
-	  return { state: state };
+	  return { color: state.color,
+	    tools: state.tools };
 	}
 
 	function mapDispatchToProps(dispatch) {

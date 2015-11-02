@@ -1,5 +1,12 @@
 
+import toolboxStore from './toolbox_store.js';
 
-export function increment_used(something) {
+const ToolboxActions = {};
+
+
+ToolboxActions.increment_used = function increment_used(something) {
+  console.log("hello from the action");
   return { type: 'INCREMENT_USED', something }
 }
+
+export default ToolboxActions;

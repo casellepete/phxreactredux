@@ -21750,6 +21750,8 @@
 
 	var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
+	function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
@@ -21764,20 +21766,29 @@
 
 	var _toolbox_storeJs = __webpack_require__(177);
 
+	var _toolbox_actionsJs = __webpack_require__(184);
+
+	var ToolboxActions = _interopRequireWildcard(_toolbox_actionsJs);
+
+	var _redux = __webpack_require__(165);
+
 	var ToolboxComponents = (function (_React$Component) {
 	  _inherits(ToolboxComponents, _React$Component);
 
 	  function ToolboxComponents(props) {
 	    _classCallCheck(this, ToolboxComponents);
 
-	    console.log("store:");
-	    console.log(_toolbox_storeJs.toolboxStore.getState());
-	    console.log(":store:");
 	    _get(Object.getPrototypeOf(ToolboxComponents.prototype), 'constructor', this).call(this, props);
 	    this.state = _toolbox_storeJs.toolboxStore.getState();
 	  }
 
 	  _createClass(ToolboxComponents, [{
+	    key: 'increment',
+	    value: function increment(e) {
+	      e.preventDefault();
+	      _toolbox_storeJs.toolboxStore.dispatch(ToolboxActions.increment_used("hi"));
+	    }
+	  }, {
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
 	      console.log("component mounted");
@@ -21785,15 +21796,17 @@
 	  }, {
 	    key: 'render',
 	    value: function render() {
-	      console.log("renderprops:");
-	      console.log(this.props);
-	      console.log(":renderprops");
-	      var tools = this.state.tools.map(function (tool) {
+	      var tools = this.props.tools.map(function (tool) {
 	        return _react2['default'].createElement(Tool, { key: tool.key, tool: tool });
 	      });
 	      return _react2['default'].createElement(
 	        'div',
-	        { style: { backgroundColor: this.state.color } },
+	        { style: { backgroundColor: this.props.color } },
+	        _react2['default'].createElement(
+	          'span',
+	          { onClick: this.increment },
+	          'bigclick'
+	        ),
 	        tools
 	      );
 	    }
@@ -21809,9 +21822,7 @@
 
 	function mapDispatchToProps(dispatch) {
 	  return {
-	    onIncreaseClick: function onIncreaseClick() {
-	      return dispatch('INCREMENT_USED');
-	    }
+	    onIncreaseClick: (0, _redux.bindActionCreators)(ToolboxActions, dispatch)
 	  };
 	}
 
@@ -21833,7 +21844,7 @@
 	    value: function increment(e) {
 	      alert("clicked");
 	      e.preventDefault();
-	      _toolbox_storeJs.toolboxStore.dispatch({ type: 'INCREMENT_USED' });
+	      _toolbox_storeJs.toolboxStore.dispatch(ToolboxActions.increment_used("hi"));
 	    }
 	  }, {
 	    key: 'render',
@@ -21862,6 +21873,35 @@
 /***/ function(module, exports) {
 
 	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, '__esModule', {
+	  value: true
+	});
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+	var _toolbox_storeJs = __webpack_require__(177);
+
+	var _toolbox_storeJs2 = _interopRequireDefault(_toolbox_storeJs);
+
+	var ToolboxActions = {};
+
+	ToolboxActions.increment_used = function increment_used(something) {
+	  console.log("hello from the action");
+	  return { type: 'INCREMENT_USED', something: something };
+	};
+
+	exports['default'] = ToolboxActions;
+	module.exports = exports['default'];
 
 /***/ }
 /******/ ]);

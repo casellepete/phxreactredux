@@ -18,7 +18,9 @@ class ToolboxComponents extends React.Component {
   }
   change_color (e) {
     e.preventDefault()
-    toolboxStore.dispatch(ToolboxActions.change_color());
+    var new_color = ('#' + Math.floor(Math.random()*16777215).toString(16))
+    console.log("c new_color is: " + new_color);
+    toolboxStore.dispatch(ToolboxActions.change_color(new_color));
   }
   componentDidMount () {
     console.log("component mounted");
@@ -62,7 +64,8 @@ export default connect(mapStateToProps, mapDispatchToProps)(ToolboxComponents)
 class Tool extends React.Component {
   increment(e) {
     e.preventDefault()
-    toolboxStore.dispatch(ToolboxActions.increment_used("hi"));
+    var tool_id = "1"
+    toolboxStore.dispatch(ToolboxActions.increment_used(tool_id));
   }
 
   render(e) {

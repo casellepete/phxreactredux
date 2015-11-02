@@ -63,7 +63,7 @@
 	var _toolbox_componentsJs2 = _interopRequireDefault(_toolbox_componentsJs);
 
 	// Requiring scss in javascript? Ya... I know it's weird
-	__webpack_require__(180);
+	__webpack_require__(181);
 
 	_react2['default'].render(_react2['default'].createElement(
 	  _reactRedux.Provider,
@@ -21733,7 +21733,7 @@
 	    case 'INCREMENT_USED':
 	      return { color: state.color, tools: [{ key: 101, name: "Hammer", used: 35 }, { key: 102, name: "Wrench", used: 36 }] };
 	    case 'CHANGE_COLOR':
-	      return { color: '#' + Math.floor(Math.random() * 16777215).toString(16),
+	      return { color: action.new_color,
 	        tools: [].concat(_toConsumableArray(state.tools)) };
 	    default:
 	      return state;
@@ -21771,7 +21771,7 @@
 
 	var _toolbox_storeJs = __webpack_require__(177);
 
-	var _toolbox_actionsJs = __webpack_require__(184);
+	var _toolbox_actionsJs = __webpack_require__(180);
 
 	var ToolboxActions = _interopRequireWildcard(_toolbox_actionsJs);
 
@@ -21795,7 +21795,9 @@
 	    key: 'change_color',
 	    value: function change_color(e) {
 	      e.preventDefault();
-	      _toolbox_storeJs.toolboxStore.dispatch(ToolboxActions.change_color());
+	      var new_color = '#' + Math.floor(Math.random() * 16777215).toString(16);
+	      console.log("c new_color is: " + new_color);
+	      _toolbox_storeJs.toolboxStore.dispatch(ToolboxActions.change_color(new_color));
 	    }
 	  }, {
 	    key: 'componentDidMount',
@@ -21856,7 +21858,8 @@
 	    key: 'increment',
 	    value: function increment(e) {
 	      e.preventDefault();
-	      _toolbox_storeJs.toolboxStore.dispatch(ToolboxActions.increment_used("hi"));
+	      var tool_id = "1";
+	      _toolbox_storeJs.toolboxStore.dispatch(ToolboxActions.increment_used(tool_id));
 	    }
 	  }, {
 	    key: 'render',
@@ -21882,15 +21885,6 @@
 
 /***/ },
 /* 180 */
-/***/ function(module, exports) {
-
-	// removed by extract-text-webpack-plugin
-
-/***/ },
-/* 181 */,
-/* 182 */,
-/* 183 */,
-/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -21907,16 +21901,24 @@
 
 	var ToolboxActions = {};
 
-	ToolboxActions.increment_used = function increment_used(something) {
-	  return { type: 'INCREMENT_USED', something: something };
+	ToolboxActions.increment_used = function increment_used(tool_id) {
+	  return { type: 'INCREMENT_USED',
+	    tool_id: tool_id };
 	};
 
-	ToolboxActions.change_color = function change_color() {
-	  return { type: 'CHANGE_COLOR' };
+	ToolboxActions.change_color = function change_color(new_color) {
+	  return { type: 'CHANGE_COLOR',
+	    new_color: new_color };
 	};
 
 	exports['default'] = ToolboxActions;
 	module.exports = exports['default'];
+
+/***/ },
+/* 181 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
 
 /***/ }
 /******/ ]);

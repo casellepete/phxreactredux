@@ -13,7 +13,7 @@ export const ToolboxReducers = function tools(state = initialState, action) {
         case 'INCREMENT_USED':
           return {color: state.color, tools: [{key: 101, name: "Hammer", used: 35}, {key: 102, name: "Wrench", used: 36}] }
         case 'CHANGE_COLOR':
-          return {color: ('#' + Math.floor(Math.random()*16777215).toString(16) ), 
+          return {color: action.new_color, 
                   tools: [...state.tools]}
         default:
           return state

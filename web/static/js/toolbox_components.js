@@ -21,7 +21,7 @@ class ToolboxComponents extends React.Component {
     console.log(this.props);
     console.log(":renderprops");
     var tools = this.state.tools.map(function(tool){
-      return <Tool tool={tool} />
+      return <Tool key={key} tool={tool} />
     });
     return <div style={{backgroundColor: this.state.color}} >{tools}</div>;
   }

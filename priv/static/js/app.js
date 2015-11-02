@@ -21729,7 +21729,7 @@
 	  var count = state.tools[0].used;
 	  switch (action.type) {
 	    case 'INCREMENT_USED':
-	      return { color: "#555555", tools: [{ name: "Hammer", used: 35 }, { name: "Wrench", used: 36 }] };
+	      return { color: "#555555", tools: [{ key: 101, name: "Hammer", used: 35 }, { key: 102, name: "Wrench", used: 36 }] };
 	    default:
 	      return state;
 	  }
@@ -21789,7 +21789,7 @@
 	      console.log(this.props);
 	      console.log(":renderprops");
 	      var tools = this.state.tools.map(function (tool) {
-	        return _react2['default'].createElement(Tool, { tool: tool });
+	        return _react2['default'].createElement(Tool, { key: key, tool: tool });
 	      });
 	      return _react2['default'].createElement(
 	        'div',

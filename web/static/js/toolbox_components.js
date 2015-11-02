@@ -19,7 +19,6 @@ class ToolboxComponents extends React.Component {
   change_color (e) {
     e.preventDefault()
     var new_color = ('#' + Math.floor(Math.random()*16777215).toString(16))
-    console.log("c new_color is: " + new_color);
     toolboxStore.dispatch(ToolboxActions.change_color(new_color));
   }
   componentDidMount () {
@@ -64,15 +63,15 @@ export default connect(mapStateToProps, mapDispatchToProps)(ToolboxComponents)
 class Tool extends React.Component {
   increment(e) {
     e.preventDefault()
-    var tool_id = "1"
-    toolboxStore.dispatch(ToolboxActions.increment_used(tool_id));
+    var tool_key = this.props.tool.key
+    toolboxStore.dispatch(ToolboxActions.increment_used(tool_key));
   }
 
   render(e) {
     return (
       <div>
         {this.props.tool.name} 
-        <button onClick={this.increment}>used: {this.props.tool.used}</button>
+        <button onClick={this.increment.bind(this)}>used: {this.props.tool.used}</button>
       </div>
     );
   }

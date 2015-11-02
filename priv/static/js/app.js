@@ -21731,7 +21731,12 @@
 	  var count = state.tools[0].used;
 	  switch (action.type) {
 	    case 'INCREMENT_USED':
-	      return { color: state.color, tools: [{ key: 101, name: "Hammer", used: 35 }, { key: 102, name: "Wrench", used: 36 }] };
+	      var new_tools = state.tools.map(function (tool) {
+	        return { key: tool.key,
+	          name: tool.name,
+	          used: tool.used + (tool.key == action.tool_id ? 1 : 0) };
+	      });
+	      return { color: state.color, tools: new_tools };
 	    case 'CHANGE_COLOR':
 	      return { color: action.new_color,
 	        tools: [].concat(_toConsumableArray(state.tools)) };
@@ -21796,7 +21801,6 @@
 	    value: function change_color(e) {
 	      e.preventDefault();
 	      var new_color = '#' + Math.floor(Math.random() * 16777215).toString(16);
-	      console.log("c new_color is: " + new_color);
 	      _toolbox_storeJs.toolboxStore.dispatch(ToolboxActions.change_color(new_color));
 	    }
 	  }, {
@@ -21858,8 +21862,8 @@
 	    key: 'increment',
 	    value: function increment(e) {
 	      e.preventDefault();
-	      var tool_id = "1";
-	      _toolbox_storeJs.toolboxStore.dispatch(ToolboxActions.increment_used(tool_id));
+	      var tool_key = this.props.tool.key;
+	      _toolbox_storeJs.toolboxStore.dispatch(ToolboxActions.increment_used(tool_key));
 	    }
 	  }, {
 	    key: 'render',
@@ -21870,7 +21874,7 @@
 	        this.props.tool.name,
 	        _react2['default'].createElement(
 	          'button',
-	          { onClick: this.increment },
+	          { onClick: this.increment.bind(this) },
 	          'used: ',
 	          this.props.tool.used
 	        )

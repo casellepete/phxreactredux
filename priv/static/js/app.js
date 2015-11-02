@@ -21789,7 +21789,7 @@
 	      console.log(this.props);
 	      console.log(":renderprops");
 	      var tools = this.state.tools.map(function (tool) {
-	        return _react2['default'].createElement(Tool, { key: key, tool: tool });
+	        return _react2['default'].createElement(Tool, { key: tool.key, tool: tool });
 	      });
 	      return _react2['default'].createElement(
 	        'div',

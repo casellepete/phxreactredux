@@ -21719,6 +21719,8 @@
 	  value: true
 	});
 
+	function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) arr2[i] = arr[i]; return arr2; } else { return Array.from(arr); } }
+
 	var initialState = {
 	  color: "#FF00FF", tools: [{ key: 101, name: "Hammer", used: 15 }, { key: 102, name: "Wrench", used: 16 }]
 	};
@@ -21729,7 +21731,10 @@
 	  var count = state.tools[0].used;
 	  switch (action.type) {
 	    case 'INCREMENT_USED':
-	      return { color: "#555555", tools: [{ key: 101, name: "Hammer", used: 35 }, { key: 102, name: "Wrench", used: 36 }] };
+	      return { color: state.color, tools: [{ key: 101, name: "Hammer", used: 35 }, { key: 102, name: "Wrench", used: 36 }] };
+	    case 'CHANGE_COLOR':
+	      return { color: '#' + Math.floor(Math.random() * 16777215).toString(16),
+	        tools: [].concat(_toConsumableArray(state.tools)) };
 	    default:
 	      return state;
 	  }
@@ -21772,6 +21777,10 @@
 
 	var _redux = __webpack_require__(165);
 
+	///////////////////////////////
+	//          Toolbox          //
+	///////////////////////////////
+
 	var ToolboxComponents = (function (_React$Component) {
 	  _inherits(ToolboxComponents, _React$Component);
 
@@ -21783,10 +21792,10 @@
 	  }
 
 	  _createClass(ToolboxComponents, [{
-	    key: 'increment',
-	    value: function increment(e) {
+	    key: 'change_color',
+	    value: function change_color(e) {
 	      e.preventDefault();
-	      _toolbox_storeJs.toolboxStore.dispatch(ToolboxActions.increment_used("hi"));
+	      _toolbox_storeJs.toolboxStore.dispatch(ToolboxActions.change_color());
 	    }
 	  }, {
 	    key: 'componentDidMount',
@@ -21804,8 +21813,8 @@
 	        { style: { backgroundColor: this.props.color } },
 	        _react2['default'].createElement(
 	          'span',
-	          { onClick: this.increment },
-	          'bigclick'
+	          { onClick: this.change_color },
+	          'random color'
 	        ),
 	        tools
 	      );
@@ -21830,6 +21839,10 @@
 
 	exports['default'] = (0, _reactRedux.connect)(mapStateToProps, mapDispatchToProps)(ToolboxComponents);
 
+	///////////////////////////////
+	//            Tool           //
+	///////////////////////////////
+
 	var Tool = (function (_React$Component2) {
 	  _inherits(Tool, _React$Component2);
 
@@ -21842,13 +21855,12 @@
 	  _createClass(Tool, [{
 	    key: 'increment',
 	    value: function increment(e) {
-	      alert("clicked");
 	      e.preventDefault();
 	      _toolbox_storeJs.toolboxStore.dispatch(ToolboxActions.increment_used("hi"));
 	    }
 	  }, {
 	    key: 'render',
-	    value: function render() {
+	    value: function render(e) {
 	      return _react2['default'].createElement(
 	        'div',
 	        null,
@@ -21896,8 +21908,11 @@
 	var ToolboxActions = {};
 
 	ToolboxActions.increment_used = function increment_used(something) {
-	  console.log("hello from the action");
 	  return { type: 'INCREMENT_USED', something: something };
+	};
+
+	ToolboxActions.change_color = function change_color() {
+	  return { type: 'CHANGE_COLOR' };
 	};
 
 	exports['default'] = ToolboxActions;

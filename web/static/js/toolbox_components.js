@@ -8,14 +8,17 @@ import { bindActionCreators } from 'redux';
 
 
 
+///////////////////////////////
+//          Toolbox          //
+///////////////////////////////
 class ToolboxComponents extends React.Component { 
   constructor (props) {
     super(props);
     this.state = toolboxStore.getState();
   }
-  increment (e) {
+  change_color (e) {
     e.preventDefault()
-    toolboxStore.dispatch(ToolboxActions.increment_used("hi"));
+    toolboxStore.dispatch(ToolboxActions.change_color());
   }
   componentDidMount () {
     console.log("component mounted");
@@ -25,7 +28,7 @@ class ToolboxComponents extends React.Component {
       return <Tool key={tool.key} tool={tool} />
     });
     return (<div style={{backgroundColor: this.props.color}} >
-             <span onClick={this.increment} >bigclick</span>
+             <span onClick={this.change_color}>random color</span>
              {tools}
             </div>);
   }
@@ -53,14 +56,16 @@ export default connect(mapStateToProps, mapDispatchToProps)(ToolboxComponents)
 
 
 
+///////////////////////////////
+//            Tool           //
+///////////////////////////////
 class Tool extends React.Component {
-  increment (e) {
-    alert("clicked");
+  increment(e) {
     e.preventDefault()
     toolboxStore.dispatch(ToolboxActions.increment_used("hi"));
   }
 
-  render() {
+  render(e) {
     return (
       <div>
         {this.props.tool.name} 

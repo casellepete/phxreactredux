@@ -5,8 +5,11 @@ const ToolboxActions = {};
 
 
 ToolboxActions.increment_used = function increment_used(something) {
-  console.log("hello from the action");
   return { type: 'INCREMENT_USED', something }
+}
+
+ToolboxActions.change_color = function change_color() {
+  return { type: 'CHANGE_COLOR' }
 }
 
 export default ToolboxActions;
